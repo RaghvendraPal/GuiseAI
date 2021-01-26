@@ -60,6 +60,11 @@
     text-align: center;
     color: white;
   }
+  table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align:center;
+}
   
   /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
   @media (max-width: 600px) {
@@ -89,6 +94,10 @@
   </nav>
   
   <article>
+      {% if dataframe.empty %}
+        <h2>No Image Found in Database</h2>
+      {%endif%}
+      {% if not dataframe.empty %}
       <table style="width:100%">
         <tr>
           <th>Image Name</th>
@@ -101,6 +110,7 @@
         </tr>
         {%endfor%}
       </table>
+      {%endif%}
 
 </article>
 </section>

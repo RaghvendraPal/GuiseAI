@@ -29,6 +29,7 @@ def all_image_v2():
             data = {'Name': image_name, 'Time': date_uploaded}
             dataframe = pd.DataFrame(data)
             dataframe = dataframe.sort_values(by=['Time'], ascending=False)
+            print(dataframe)
             return render_template("all_image_v2.html", dataframe = dataframe)
     except Exception as e:
         print(e)
