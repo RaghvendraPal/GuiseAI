@@ -26,8 +26,8 @@ def all_image_v2():
                 image_name.append(name)
             zipped_pairs = zip(date_uploaded, image_name)
             return render_template("all_image_v2.html", zipped_pairs = zipped_pairs)
-    except:
-         return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
+    except Exception as e:
+         return render_template("failure_v2.html", message = "Something went wrong!! Sorry !"+str(e))
 
 @app.route('/add_image', methods = ['POST', 'GET'])  
 def add_image():  
@@ -56,8 +56,8 @@ def success():
                 return render_template("success_v2.html", image_message = "Image Uploaded Successfully",image_name = f.filename, flag = True)  
             else:
                 return render_template("failure_v2.html", message = "Your file extension should be .jpg, .jpeg, .png")
-    except:
-         return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
+    except Exception as e:
+         return render_template("failure_v2.html", message = "Something went wrong!! Sorry !"+str(e))
 
 @app.route('/search', methods = ['POST'])  
 def search():  
@@ -75,7 +75,7 @@ def search():
                 return render_template("failure_v2.html", message = "File Not Exist in DataBase")
     except Exception as e:
         print(e)
-        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
+        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !"+str(e))
   
 @app.route('/delete', methods = ['POST'])  
 def delete():  
@@ -94,7 +94,7 @@ def delete():
                 return render_template("failure_v2.html", message = "File Not Exist in DataBase")
     except Exception as e:
         print(e)
-        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
+        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !"+str(e))
 
 if __name__ == '__main__':  
     app.run(debug=True)
