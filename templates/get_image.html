@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/css/main.css') }}">  
+</head>
+<body>
+
+<header>
+  <h2>Guise AI Assignment</h2>
+</header>
+
+<section>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('file_upload_form_v2') }}">Home</a></li>
+      <li><a href="{{ url_for('add_image') }}">Add Image</a></li>
+      <li><a href="{{ url_for('all_image_v2') }}">List Uploaded Image</a></li>
+      <li><a href="#">Search Image</a></li>
+      <li><a href="{{ url_for('delete_image')}}">Delete Image</a></li>
+    </ul>
+  </nav>
+  
+  <article>
+    <h2>Enter file name to search</h2>
+    <form action = "/search" method = "post" enctype="multipart/form-data">  
+        <input type="text" name="filename" />  
+        <input type = "submit" value="Search">
+    </form> 
+  </article>
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>
+
+</body>
+</html>

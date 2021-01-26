@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/css/main.css') }}">  
+
+</head>
+<body>
+
+<header>
+  <h2>Guise AI Assignment</h2>
+</header>
+
+<section>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="{{ url_for('add_image') }}">Add Image</a></li>
+      <li><a href="{{ url_for('all_image_v2')}}">List Uploaded Image</a></li>
+      <li><a href="{{ url_for('get_image') }}">Search Image</a></li>
+      <li><a href="{{ url_for('delete_image')}}">Delete Image</a></li>
+    </ul>
+  </nav>
+  
+  <article>
+    <h1>BackEnd Challenge</h1>
+    <p>Develop a Backend app where user can upload, delete, search the uploaed images</p>
+  </article>
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>
+
+</body>
+</html>
