@@ -1,6 +1,4 @@
 from flask import *  
-import urllib
-import json 
 import requests
 import pathlib
 import os

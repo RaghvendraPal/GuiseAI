@@ -4,8 +4,6 @@ itsdangerous
 Jinja2
 MarkupSafe
 Werkzeug 
-urllib
-json 
 requests
 pathlib
 datetime
