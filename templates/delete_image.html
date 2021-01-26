@@ -4,7 +4,72 @@
   <title>Guise AI Assignment</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/css/main.css') }}">  
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Style the header */
+  header {
+    background-color: #49ACB9;
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    color: white;
+  }
+  
+  /* Create two columns/boxes that floats next to each other */
+  nav {
+    float: left;
+    width: 20%;
+    height: 470px; /* only for demonstration, should be removed */
+    background: #CAEDFE;
+    padding: 20px;
+  }
+  
+  /* Style the list inside the menu */
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  article {
+    overflow-y:auto;
+    float: left;
+    padding: 20px;
+    width: 80%;
+    background-color: #FFFFFF;
+    height: 470px; /* only for demonstration, should be removed */
+  }
+  
+  /* Clear floats after the columns */
+  section::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the footer */
+  footer {
+    background-color: #49ACB9;
+    padding: 5px;
+    text-align: center;
+    color: white;
+  }
+  
+  /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+  @media (max-width: 600px) {
+    nav, article {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+</style>
 </head>
 <body>
 
@@ -24,7 +89,7 @@
   </nav>
   
   <article>
-    <h2>Enter file name to Delete</h2>
+    <h2>Enter File Name to Delete</h2>
     <form action = "/delete" method = "post" enctype="multipart/form-data">  
         <input type="text" name="filename" />  
         <input type = "submit" value="Delete">
@@ -33,7 +98,7 @@
 </section>
 
 <footer>
-  <p>Footer</p>
+  <p>Raghvendra Pal, raghvendrapal65@gmail.com</p>
 </footer>
 
 </body>

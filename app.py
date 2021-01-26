@@ -3,6 +3,7 @@ import requests
 import pathlib
 import os
 import datetime
+import pandas as pd
 from fuzzywuzzy import fuzz
 
 
@@ -18,16 +19,20 @@ def all_image_v2():
     try:
         if request.method == 'GET':
             data = os.listdir(file_path)
+            
             image_name = []
             date_uploaded = []
             for name in data:
                 t = os.path.getmtime(file_path+name)
                 date_uploaded.append(datetime.datetime.fromtimestamp(t))
                 image_name.append(name)
-            zipped_pairs = zip(date_uploaded, image_name)
-            return render_template("all_image_v2.html", zipped_pairs = zipped_pairs)
+            data = {'Name': image_name, 'Time': date_uploaded}
+            dataframe = pd.DataFrame(data)
+            dataframe = dataframe.sort_values(by=['Time'], ascending=False)
+            return render_template("all_image_v2.html", dataframe = dataframe)
     except Exception as e:
-         return render_template("failure_v2.html", message = "Something went wrong!! Sorry !"+str(e))
+        print(e)
+        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
 
 @app.route('/add_image', methods = ['POST', 'GET'])  
 def add_image():  
@@ -47,24 +52,21 @@ def success():
     try:
         if request.method == 'POST':  
             f = request.files['file']  
-            print("File name : ", f )
-            print(request)
             extensions = ['.jpg', '.jpeg', '.png']
-            print(pathlib.Path(f.filename).suffix)
             if pathlib.Path(f.filename).suffix.lower() in extensions:
                 f.save("static/upload_image/"+f.filename)
                 return render_template("success_v2.html", image_message = "Image Uploaded Successfully",image_name = f.filename, flag = True)  
             else:
                 return render_template("failure_v2.html", message = "Your file extension should be .jpg, .jpeg, .png")
     except Exception as e:
-         return render_template("failure_v2.html", message = "Something went wrong!! Sorry !"+str(e))
+        print(e)
+        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
 
 @app.route('/search', methods = ['POST'])  
 def search():  
     try:
         if request.method == 'POST':  
             filename = request.form.get("filename") 
-            print("File name : ", filename )
             file_path = "static/upload_image/"
             flag = True
             for value in os.listdir(file_path):
@@ -72,17 +74,16 @@ def search():
                     flag = False
                     return render_template("success_v2.html", image_message = value,image_name = value, flag = True)  
             if flag:
-                return render_template("failure_v2.html", message = "File Not Exist in DataBase")
+                return render_template("failure_v2.html", message = "File Not Found")
     except Exception as e:
         print(e)
-        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !"+str(e))
+        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
   
 @app.route('/delete', methods = ['POST'])  
 def delete():  
     try:
         if request.method == 'POST':  
             filename = request.form.get("filename") 
-            print("File name : ", filename )
             file_path = "static/upload_image/"
             flag = True
             for value in os.listdir(file_path):
@@ -94,7 +95,7 @@ def delete():
                 return render_template("failure_v2.html", message = "File Not Exist in DataBase")
     except Exception as e:
         print(e)
-        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !"+str(e))
+        return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
 
 if __name__ == '__main__':  
     app.run(debug=True)
