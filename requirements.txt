@@ -3,9 +3,7 @@ gunicorn
 itsdangerous
 Jinja2
 MarkupSafe
-Werkzeug
-numpy
-scikit-learn 
+Werkzeug 
 urllib
 json 
 requests
