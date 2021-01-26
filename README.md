@@ -8,7 +8,7 @@ If any Exception comes the API show : **"Something went wrong!! Sorry !"** messa
 Success message : Image Uploaded Successfully
 
 
-**Search API** : This api is used to search the image to server, it will show you to the image if the image exist, else it will show you File Not Found Error according to the response and network connectivity. It will also redirect you to error page if any exception comes.
+**Search API(all_image_v2)** : This api is used to search the image to server, it will show you to the image if the image exist, else it will show you File Not Found Error according to the response and network connectivity. It will also redirect you to error page if any exception comes.
 If File is not present API will show: **File Not Found**
 If any Exception comes the API show : **"Something went wrong!! Sorry !"** message
 Success message : show image with file name.
