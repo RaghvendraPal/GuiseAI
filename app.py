@@ -99,4 +99,4 @@ def delete():
         return render_template("failure_v2.html", message = "Something went wrong!! Sorry !")
 
 if __name__ == '__main__':  
-    app.run(debug = True, port=180)  
+    app.run(debug=True)
