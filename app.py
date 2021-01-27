@@ -23,7 +23,7 @@ def all_image_v2():
             image_name = []
             date_uploaded = []
             for name in data:
-                t = os.path.getmtime(file_path+name)
+                t = os.path.getctime(file_path+name)
                 date_uploaded.append(datetime.datetime.fromtimestamp(t))
                 image_name.append(name)
             data = {'Name': image_name, 'Time': date_uploaded}
